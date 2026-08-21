@@ -1,0 +1,13 @@
+services:
+  redis:
+    image: redis:7.4-alpine
+    container_name: rate-limit-redis
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    restart: unless-stopped
+
+volumes:
+  redis-data:
